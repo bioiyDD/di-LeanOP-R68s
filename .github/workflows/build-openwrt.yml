@@ -93,10 +93,10 @@ jobs:
       id: package
       run: |
         cd openwrt
-        make defconfig
         cd package
         svn co https://github.com/kenzok8/small-package/trunk/gn
         cd ..
+        make defconfig
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
