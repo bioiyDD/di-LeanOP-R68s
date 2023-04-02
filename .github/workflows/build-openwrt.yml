@@ -94,15 +94,12 @@ jobs:
       run: |
         cd openwrt
         make defconfig
+        cd package
+        svn co https://github.com/kenzok8/small-package/trunk/gn
+        cd ..
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
-        
-    - name: Download GN
-      id: GN package
-      run: |
-         cd openwrt/package
-         svn co https://github.com/kenzok8/small-package/trunk/gn
 
     - name: Compile the firmware
       id: compile
